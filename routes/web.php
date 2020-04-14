@@ -22,6 +22,7 @@ Route::resource('category', 'CategoryController');
 
 //Rotas de contatos
 Route::resource('person', 'PersonController');
+Route::post('/search/person', 'PersonController@search')->name('person.search');
 
 //Rotas do telefone
 Route::prefix('phone')->group(function(){
@@ -40,10 +41,3 @@ Route::prefix('address')->group(function(){
     Route::put('/update/', 'AddressController@update')->name('address.update');
     Route::delete('/{id}', 'AddressController@destroy')->name('address.destroy');
 });
-
-// Route::get('/email', function(){
-//     Mail::send('welcome', ['Curso' => 'Eloquent'], function($m){
-//         $m->from('lucaskns1996@gmail.com');// Email de envio
-//         $m->to('lucaskns2015@outlook.com');// Email de destinatario
-//     });
-// });

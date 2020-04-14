@@ -10,6 +10,8 @@ use App\Address;
 use App\Phone; 
 use DB;
 
+use App\Notifications\ContactsNotification;
+
 class PersonController extends Controller
 {
     public function __construct()
@@ -156,5 +158,18 @@ class PersonController extends Controller
         $Person = Person::find($id);
         $Person->delete();
         return redirect('/person');
+    }
+
+    public function search(Request $request)
+    {
+        $Persons = DB::table('people')
+                    ->join('categories', 'categories.id', '=', 'people.category_id')
+                    ->select('people.id', 'people.name', 'people.email', 'categories.name as cat')
+                    ->where('people.user_id', '=', session('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'))
+                    ->where('people.name', 'like', '%' . $request->search . '%')
+                    ->whereNull('people.deleted_at')
+                    ->get();
+        $Persons = json_decode($Persons);
+        return view('person.index', compact('Persons'));
     }
 }

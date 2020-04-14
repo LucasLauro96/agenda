@@ -1,0 +1,49 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.error{
+    color: red;
+}
+
+.header{
+    .title-header{
+        @media #{$mq-mobile}{
+            h1{
+                font-size: 20px;
+            }
+        }
+    }
+    .row{
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+    }
+}
+
+.dataTables_info{
+    @media #{$mq-mobile}{
+        display: none;
+    }   
+}
+
+.dataTables_length{
+    @media #{$mq-mobile}{
+        display: none;
+    }
+}
+
+#formCadastro{
+    .form-group{
+        @media #{$mq-mobile}{
+            button{
+                width: 100%;
+            }
+        }
+    }
+}

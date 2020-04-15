@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Illuminate\Http\Request;
 
 use App\Person;
@@ -93,7 +94,16 @@ class PersonController extends Controller
         $Address->people_id = $Person->id;
         $Address->save();
 
+        // Notifico o usuario que o cadastro do contato foi um sucesso
+        $Email = session('email');
+        $Name = [
+            "name" => $Person->name
+        ];
+        Mail::to($Email)->send(new \App\Mail\ContactMail($Name));
+
         return "OK";
+
+        
 
     }
 

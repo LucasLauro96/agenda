@@ -41,3 +41,12 @@ Route::prefix('address')->group(function(){
     Route::put('/update/', 'AddressController@update')->name('address.update');
     Route::delete('/{id}', 'AddressController@destroy')->name('address.destroy');
 });
+
+
+Route::get('test', function () {
+
+    Mail::to('lucaskns2015@outlook.com')->send(new App\Mail\ContactMail);
+
+    dd("success");
+
+});

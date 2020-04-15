@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('home', function(){
+    return redirect('/');
+});
 
 //Rotas da categoria
 Route::resource('category', 'CategoryController');
@@ -40,13 +43,4 @@ Route::prefix('address')->group(function(){
     Route::get('/edit/{id}', 'AddressController@edit')->name('address.edit');
     Route::put('/update/', 'AddressController@update')->name('address.update');
     Route::delete('/{id}', 'AddressController@destroy')->name('address.destroy');
-});
-
-
-Route::get('test', function () {
-
-    Mail::to('lucaskns2015@outlook.com')->send(new App\Mail\ContactMail);
-
-    dd("success");
-
 });
